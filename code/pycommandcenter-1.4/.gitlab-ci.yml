@@ -1,0 +1,22 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+pages:
+  image: davidbergstrom/pycommandcenterenv
+  stage: deploy
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make library
+    - cd ../docs
+    - python3 library_import_check.py
+    - make html
+    - cd ..
+    - mkdir public
+    - cp -r docs/_build/html/* public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master

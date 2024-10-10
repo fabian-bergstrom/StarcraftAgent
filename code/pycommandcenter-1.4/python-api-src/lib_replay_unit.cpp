@@ -1,0 +1,42 @@
+#include "library.h"
+
+namespace py = pybind11;
+
+void define_replay_unit(py::module & m)
+{
+	py::class_<ReplayUnit>(m, "ReplayUnit")
+		.def_property_readonly("id", &ReplayUnit::getID)
+		.def_property_readonly("unit_type", &ReplayUnit::getType, "The :class :`library.UnitType` of the unit")
+		.def_property_readonly("position", &ReplayUnit::getPosition, "The :class:`library.Point2D` of the unit")
+		.def_property_readonly("tile_position", &ReplayUnit::getTilePosition, "The :class:`library.Point2DI` of the unit")
+		.def_property_readonly("hit_points", &ReplayUnit::getHitPoints)
+		.def_property_readonly("shields", &ReplayUnit::getShields)
+		.def_property_readonly("energy", &ReplayUnit::getEnergy)
+		.def_property_readonly("player", &ReplayUnit::getPlayer)
+		.def_property_readonly("build_percentage", &ReplayUnit::getBuildPercentage)
+		.def_property_readonly("weapon_cooldown", &ReplayUnit::getWeaponCooldown)
+		.def_property_readonly("is_completed", &ReplayUnit::isCompleted)
+		.def_property_readonly("is_being_constructed", &ReplayUnit::isBeingConstructed)
+		.def_property_readonly("is_cloaked", &ReplayUnit::isCloaked)
+		.def_property_readonly("is_flying", &ReplayUnit::isFlying)
+		.def_property_readonly("buffs", &ReplayUnit::buffs)
+		.def_property_readonly("is_alive", &ReplayUnit::isAlive)
+		.def_property_readonly("is_powered", &ReplayUnit::isPowered)
+		.def_property_readonly("is_idle", &ReplayUnit::isIdle)
+		.def_property_readonly("is_burrowed", &ReplayUnit::isBurrowed)
+		.def_property_readonly("is_valid", &ReplayUnit::isValid)
+		.def_property_readonly("is_training", &ReplayUnit::isTraining)
+		.def_property_readonly("is_blip", &ReplayUnit::isBlip)
+		.def_property_readonly("target", &ReplayUnit::getTarget)
+		.def_property_readonly("has_target", &ReplayUnit::hasTarget)
+		.def_property_readonly("max_hit_points", &ReplayUnit::getMaxHitPoints)
+		.def_property_readonly("progress", &ReplayUnit::getProgress)
+		.def_property_readonly("current_ability_id", &ReplayUnit::getCurrentAbilityID, "The AbilityID of currently used ability")
+		.def_property_readonly("facing", &ReplayUnit::getFacing)
+		.def_property_readonly("radius", &ReplayUnit::getRadius)
+		.def_property_readonly("is_carrying_minerals", &ReplayUnit::isCarryingMinerals)
+		.def("__hash__", [](const ReplayUnit & unit) { return std::hash<const sc2::Unit *>{}(unit.getUnitPtr()); })
+		.def(py::self == py::self)
+		.def("__repr__", [](const ReplayUnit & unit) { return "<Unit of type: '" + unit.getType().getName() + "'>"; })
+		;
+}

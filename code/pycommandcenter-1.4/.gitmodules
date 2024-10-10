@@ -1,0 +1,15 @@
+[submodule "lib/pybind11"]
+	path = lib/pybind11
+	url = https://github.com/pybind/pybind11
+[submodule "lib/cpp-sc2"]
+	path = lib/cpp-sc2
+	url = https://github.com/cpp-sc2/cpp-sc2.git
+[submodule "lib/sc2-gamedata"]
+	path = lib/sc2-gamedata
+	url = https://github.com/noorus/sc2-gamedata.git
+[submodule "lib/json"]
+	path = lib/json
+	url = https://github.com/nlohmann/json.git
+[submodule "lib/sc2-techtree"]
+	path = lib/sc2-techtree
+	url = https://github.com/BurnySc2/sc2-techtree.git

@@ -1,0 +1,4 @@
+_autosummary/
+_build/
+venv
+.idea
